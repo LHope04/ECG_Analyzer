@@ -1331,11 +1331,21 @@ void lcd_show_string(uint16_t x, uint16_t y, uint16_t width, uint16_t height, ui
 
 uint16_t lastX,lastY;
 uint8_t firstPoint = 1;
-
+extern int16_t maxfft;
+extern int16_t maxtt,mintt;
 void drawCurve1(int16_t value)  
 {
 	uint16_t x, y;
-	y = (LCD_HEIGHT - 10) - value*(LCD_HEIGHT - 20)/500 - 200;	
+
+    int16_t value_min = mintt; // ???? value ????
+    int16_t value_max = maxtt;  // ???? value ????
+    int16_t y_min = -40;      // ???????
+    int16_t y_max = 40;       // ???????
+
+
+    int16_t mapped_value = y_min + (value - value_min) * (y_max - y_min) / (value_max - value_min);
+
+	y = (LCD_HEIGHT - 10) - mapped_value*(LCD_HEIGHT - 20)/500 - 200;	
 
 	if(firstPoint)//如果是第一次画点，则无需连线，直接描点即可
 	{

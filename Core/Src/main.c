@@ -75,12 +75,12 @@ extern int16_t FIRResult;
 int heart_beat=0;
 double heart_rate;
 
-#define ECG_COUNT 1024
+#define ECG_COUNT 256
 int16_t ECG_Signal[ECG_COUNT];
 uint16_t ecg_num;
 
-#define FFT_LENGTH		1024
-float maxfft;
+#define FFT_LENGTH		256
+int16_t maxfft;
 uint32_t maxindex = 0;
 float FFT_InputBufmy[FFT_LENGTH*2];	
 float FFT_OutputBufmy[FFT_LENGTH];	
@@ -122,7 +122,7 @@ Second_Order_TF_t tf;
     // ?????????,?? c[0] = 2, c[1] = 1, c[2] = 1
     float coefficients[3] = {2.0f, 1.0f, 1.0f};
 		uint32_t DWT_CNT1;
-		
+		int16_t maxtt,mintt;
 		
 /* USER CODE END 0 */
 
@@ -167,6 +167,7 @@ int main(void)
 	lcd_init();
 	lcd_clear(BLACK);
 	lcd_display_dir(1);
+	
 		//	arm_cfft_radix4_init_f32(&scfft,FFT_LENGTH,0,1);  
 //Second_Order_TF_Init(&tf, coefficients);			
   /* USER CODE END 2 */
@@ -211,8 +212,12 @@ int main(void)
 				}
 				else
 				{
-					ecg_num = 0;
 					
+					
+					ecg_num = 0;
+					arm_max_q15(&ECG_Signal[0],ECG_COUNT,&maxtt,&maxindex);
+					arm_min_q15(&ECG_Signal[0],ECG_COUNT,&mintt,&maxindex);
+					maxfft = maxtt-mintt;
 					//fftcal();
 				}
 				drawCurve1(FIRResult); //»­²¨ÐÎ
