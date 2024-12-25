@@ -77,6 +77,7 @@ double heart_rate;
 
 #define ECG_COUNT 256
 int16_t ECG_Signal[ECG_COUNT];
+int16_t ECG_Signal_raw[ECG_COUNT];
 uint16_t ecg_num;
 
 #define FFT_LENGTH		256
@@ -123,7 +124,7 @@ Second_Order_TF_t tf;
     float coefficients[3] = {2.0f, 1.0f, 1.0f};
 		uint32_t DWT_CNT1;
 		int16_t maxtt,mintt;
-		
+		int16_t maxraw,minraw;
 /* USER CODE END 0 */
 
 /**
@@ -207,7 +208,8 @@ int main(void)
 				if(ecg_num < ECG_COUNT)
 				{
 					ECG_Signal[ecg_num] = FIRResult; //¼ÇÂ¼²¨ÐÎ
-					IIR_Result =  Second_Order_TF_Calculate(&tf, ECGRawData[0]);
+				//	IIR_Result =  Second_Order_TF_Calculate(&tf, ECGRawData[0]);
+					ECG_Signal_raw[ecg_num] = ECGRawData[0];
 					ecg_num++;
 				}
 				else
@@ -217,12 +219,22 @@ int main(void)
 					ecg_num = 0;
 					arm_max_q15(&ECG_Signal[0],ECG_COUNT,&maxtt,&maxindex);
 					arm_min_q15(&ECG_Signal[0],ECG_COUNT,&mintt,&maxindex);
+					arm_max_q15(&ECG_Signal_raw[0],ECG_COUNT,&maxraw,&maxindex);
+					arm_min_q15(&ECG_Signal_raw[0],ECG_COUNT,&minraw,&maxindex);
 					maxfft = maxtt-mintt;
 					//fftcal();
 				}
 				drawCurve1(FIRResult); //»­²¨ÐÎ
 				lcd_show_string(10, 10, 240, 16, 16, "HR: ", WHITE);
 				lcd_show_num(32, 10, (uint32_t)heart_rate, 3, 16, WHITE);
+				
+					float vppt = (maxraw - minraw)/26.f*100;
+	float ampt = vppt/2;
+	
+	lcd_show_string(10, 30, 240, 16, 16, "Vpp: ", WHITE);
+	lcd_show_num(48, 30, (uint32_t)vppt, 3, 16, WHITE);
+	lcd_show_string(10, 50, 240, 16, 16, "Amp: ", WHITE);
+	lcd_show_num(48, 50, (uint32_t)ampt, 3, 16, WHITE);
 				
 				printf("A = %d,B = %d,C = %d\n", ECGRawData[0], ECGRawData[1], FIRResult);
 				
