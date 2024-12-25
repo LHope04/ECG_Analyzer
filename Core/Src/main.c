@@ -125,6 +125,7 @@ Second_Order_TF_t tf;
 		uint32_t DWT_CNT1;
 		int16_t maxtt,mintt;
 		int16_t maxraw,minraw;
+		int ifboom = 0;
 /* USER CODE END 0 */
 
 /**
@@ -169,7 +170,7 @@ int main(void)
 	lcd_clear(BLACK);
 	lcd_display_dir(1);
 	
-		//	arm_cfft_radix4_init_f32(&scfft,FFT_LENGTH,0,1);  
+			arm_cfft_radix4_init_f32(&scfft,FFT_LENGTH,0,1);  
 //Second_Order_TF_Init(&tf, coefficients);			
   /* USER CODE END 2 */
 
@@ -192,6 +193,7 @@ int main(void)
 		if(ads1292_recive_flag == 1)
 		{	
 	  	ads1292_recive_flag = 0;
+			
 			//心电与心率信号采集
 			{
 				data_trans();
@@ -200,8 +202,12 @@ int main(void)
 				heart_beat = heartbeat_check(FIRResult);
 				if(heart_beat ==1)
 				{
-				
-					heart_rate = 60/DWT_GetDeltaT(&DWT_CNT1);
+					ifboom++;
+					if(ifboom == 3){
+					heart_rate = 3*60/DWT_GetDeltaT(&DWT_CNT1);
+					ifboom= 0;
+					
+					}
 				}
 				//heart_rate = calc_heartbeat_rate(heart_beat);
 				
@@ -211,6 +217,7 @@ int main(void)
 				//	IIR_Result =  Second_Order_TF_Calculate(&tf, ECGRawData[0]);
 					ECG_Signal_raw[ecg_num] = ECGRawData[0];
 					ecg_num++;
+					
 				}
 				else
 				{
@@ -225,6 +232,7 @@ int main(void)
 					//fftcal();
 				}
 				drawCurve1(FIRResult); //画波形
+			//	drawCurve1(heart_beat*maxtt); //画波形
 				lcd_show_string(10, 10, 240, 16, 16, "HR: ", WHITE);
 				lcd_show_num(32, 10, (uint32_t)heart_rate, 3, 16, WHITE);
 				
@@ -236,7 +244,7 @@ int main(void)
 	lcd_show_string(10, 50, 240, 16, 16, "Amp: ", WHITE);
 	lcd_show_num(48, 50, (uint32_t)ampt, 3, 16, WHITE);
 				
-				printf("A = %d,B = %d,C = %d\n", ECGRawData[0], ECGRawData[1], FIRResult);
+				printf("A = %d,B = %d,C = %d\n", ECGRawData[0],  ECGRawData[1], FIRResult);
 				
 			}
 			
