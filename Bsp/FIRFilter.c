@@ -122,7 +122,7 @@ void FIRFilter(int16_t in){
  */
 int heartbeat_check(int value)
 {
-    static int heartbeat_thresh = 100; //心跳下降沿阈值，下降沿高度大于该阈值视为一次心跳
+    static int heartbeat_thresh = 50; //心跳下降沿阈值，下降沿高度大于该阈值视为一次心跳
     static int is_init = 0;
     static int up_value = 0;// 波峰数值
     static int down_value = 0;// 波谷数值

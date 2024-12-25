@@ -94,7 +94,7 @@ void fftcal()
 {
 		for(int i=0; i < FFT_LENGTH; i++)
 {
-    FFT_InputBufmy[2*i]=(uint16_t)(ECG_Signal[i]);
+    FFT_InputBufmy[2*i]=(uint16_t)(ECG_Signal[i])/20;
     FFT_InputBufmy[2*i+1]=0;				 
 }
 arm_cfft_radix4_f32(&scfft,FFT_InputBufmy);					
@@ -102,17 +102,17 @@ arm_cmplx_mag_f32(FFT_InputBufmy,FFT_OutputBufmy,FFT_LENGTH);
 
 for(int i = 0;i<FFT_LENGTH;i++)
 {
-	FFT_OutputBufmy[i] =FFT_OutputBufmy[i]*0.36;
-	if(FFT_OutputBufmy[i]<1)
-	{
-	FFT_OutputBufmy[i] = 0;
-	
-	}
-		if(FFT_OutputBufmy[i]>500)
-	{
-	FFT_OutputBufmy[i] = 500;
-	
-	}
+	FFT_OutputBufmy[i] =FFT_OutputBufmy[i]*0.36*0.1;
+//	if(FFT_OutputBufmy[i]<1)
+//	{
+//	FFT_OutputBufmy[i] = 0;
+//	
+//	}
+//		if(FFT_OutputBufmy[i]>500)
+//	{
+//	FFT_OutputBufmy[i] = 500;
+//	
+//	}
 	
 
 }
@@ -121,6 +121,9 @@ Second_Order_TF_t tf;
 
     // ?????????,?? c[0] = 2, c[1] = 1, c[2] = 1
     float coefficients[3] = {2.0f, 1.0f, 1.0f};
+		uint32_t DWT_CNT1;
+		
+		
 /* USER CODE END 0 */
 
 /**
@@ -164,8 +167,8 @@ int main(void)
 	lcd_init();
 	lcd_clear(BLACK);
 	lcd_display_dir(1);
-			arm_cfft_radix4_init_f32(&scfft,FFT_LENGTH,0,1);  
-Second_Order_TF_Init(&tf, coefficients);			
+		//	arm_cfft_radix4_init_f32(&scfft,FFT_LENGTH,0,1);  
+//Second_Order_TF_Init(&tf, coefficients);			
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -180,7 +183,7 @@ Second_Order_TF_Init(&tf, coefficients);
 		
 
 //22000000/(56(cycle)+12.5)/1024/40(抽样) = 7.48
-arm_max_f32(&FFT_OutputBufmy[5],1000,&maxfft,&maxindex);
+//arm_max_f32(&FFT_OutputBufmy[20],900,&maxfft,&maxindex);
 
 
 		
@@ -193,25 +196,30 @@ arm_max_f32(&FFT_OutputBufmy[5],1000,&maxfft,&maxindex);
 				IIRFilter(ECGRawData[0]);
 				FIRFilter(ECGRawData[0]);
 				heart_beat = heartbeat_check(FIRResult);
-				heart_rate = calc_heartbeat_rate(heart_beat);
+				if(heart_beat ==1)
+				{
+				
+					heart_rate = 60/DWT_GetDeltaT(&DWT_CNT1);
+				}
+				//heart_rate = calc_heartbeat_rate(heart_beat);
 				
 				if(ecg_num < ECG_COUNT)
 				{
-					ECG_Signal[ecg_num] = ECGRawData[0]; //记录波形
+					ECG_Signal[ecg_num] = FIRResult; //记录波形
 					IIR_Result =  Second_Order_TF_Calculate(&tf, ECGRawData[0]);
 					ecg_num++;
 				}
 				else
 				{
 					ecg_num = 0;
-					drawCurve(ECG_Signal, ECG_COUNT); //画波形
-					fftcal();
+					
+					//fftcal();
 				}
-				
+				drawCurve1(FIRResult); //画波形
 				lcd_show_string(10, 10, 240, 16, 16, "HR: ", WHITE);
 				lcd_show_num(32, 10, (uint32_t)heart_rate, 3, 16, WHITE);
 				
-				printf("A = %d,B = %d,C = %d\n", ECGRawData[0], IIR_Result, FIRResult);
+				printf("A = %d,B = %d,C = %d\n", ECGRawData[0], ECGRawData[1], FIRResult);
 				
 			}
 			

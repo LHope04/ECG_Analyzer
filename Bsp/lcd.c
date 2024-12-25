@@ -1332,36 +1332,36 @@ void lcd_show_string(uint16_t x, uint16_t y, uint16_t width, uint16_t height, ui
 uint16_t lastX,lastY;
 uint8_t firstPoint = 1;
 
-//void drawCurve(uint16_t value)  
-//{
-//	uint16_t x, y;
-//	y = (LCD_HEIGHT - 10) - value*(LCD_HEIGHT - 20)/4095 - 100;	
+void drawCurve1(int16_t value)  
+{
+	uint16_t x, y;
+	y = (LCD_HEIGHT - 10) - value*(LCD_HEIGHT - 20)/500 - 200;	
 
-//	if(firstPoint)//如果是第一次画点，则无需连线，直接描点即可
-//	{
-//		lcd_draw_point(10, y, WHITE);
-//		lastX = 10;
-//		lastY = y;
-//		firstPoint = 0;
-//	}
-//	else
-//	{
-//		x = lastX + 1;
-//		if(x < LCD_WIDTH - 10)  //不超过屏幕宽度
-//		{
-//			lcd_draw_line(lastX, lastY, x, y, WHITE);
-//			lastX = x;
-//			lastY = y;
-//		}
-//		else  //超出屏幕宽度，清屏，从第一个点开始绘制，实现动态更新效果
-//		{
-//			lcd_clear(BLACK);
-//			lcd_draw_point(10, y, WHITE);
-//			lastX = 10;
-//			lastY = y;
-//		}
-//  }
-//}
+	if(firstPoint)//如果是第一次画点，则无需连线，直接描点即可
+	{
+		lcd_draw_point(10, y, WHITE);
+		lastX = 10;
+		lastY = y;
+		firstPoint = 0;
+	}
+	else
+	{
+		x = lastX + 1;
+		if(x < LCD_WIDTH - 10)  //不超过屏幕宽度
+		{
+			lcd_draw_line(lastX, lastY, x, y, WHITE);
+			lastX = x;
+			lastY = y;
+		}
+		else  //超出屏幕宽度，清屏，从第一个点开始绘制，实现动态更新效果
+		{
+			lcd_clear(BLACK);
+			lcd_draw_point(10, y, WHITE);
+			lastX = 10;
+			lastY = y;
+		}
+  }
+}
 
 float mul;
 int16_t max_value, min_value;

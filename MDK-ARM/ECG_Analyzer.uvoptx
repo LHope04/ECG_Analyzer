@@ -272,6 +272,31 @@
           <WinNumber>2</WinNumber>
           <ItemText>tf</ItemText>
         </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>ECGRawData,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>FIRResult,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>heart_beat,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>IIR_Result,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>notch_filter</ItemText>
+        </Ww>
       </WatchWindow2>
       <Tracepoint>
         <THDelay>0</THDelay>
