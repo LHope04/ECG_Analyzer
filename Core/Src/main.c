@@ -103,12 +103,12 @@ arm_cmplx_mag_f32(FFT_InputBufmy,FFT_OutputBufmy,FFT_LENGTH);
 
 for(int i = 0;i<FFT_LENGTH;i++)
 {
-	FFT_OutputBufmy[i] =FFT_OutputBufmy[i]*0.36*0.5;
-			if(FFT_OutputBufmy[i]>500)
-	{
-	FFT_OutputBufmy[i] = 100;
-	
-	}
+	FFT_OutputBufmy[i] =FFT_OutputBufmy[i]*0.36*0.5/1000;
+//			if(FFT_OutputBufmy[i]>100)
+//	{
+//	FFT_OutputBufmy[i] = 100;
+//	
+//	}
 fftf[i] = FFT_OutputBufmy[i];
 	
 //	if(FFT_OutputBufmy[i]<1)
