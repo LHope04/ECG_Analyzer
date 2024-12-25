@@ -18,3 +18,41 @@ void IIRFilter(uint16_t rawData){
     last_output = cur_output;
     last_input = cur_input;
 }
+
+
+void IIRFilter_Init(IIRFilterState *state) {
+    // 初始化缓冲区为 0
+    for (int i = 0; i <= FILTER_ORDER; i++) {
+        state->x[i] = 0.0;
+        state->y[i] = 0.0;
+    }
+}
+
+double IIRFilter_Process(IIRFilterState *state, double input) {
+    // 更新输入缓冲区
+    for (int i = FILTER_ORDER; i > 0; i--) {
+        state->x[i] = state->x[i - 1];
+    }
+    state->x[0] = input;
+
+    // 计算输出
+    double output = 0.0;
+
+    // 分子部分
+    for (int i = 0; i <= FILTER_ORDER; i++) {
+        output += NUM[i] * state->x[i];
+    }
+
+    // 分母部分（跳过 a[0] = 1）
+    for (int i = 1; i <= FILTER_ORDER; i++) {
+        output -= DEN[i] * state->y[i - 1];
+    }
+
+    // 更新输出缓冲区
+    for (int i = FILTER_ORDER; i > 0; i--) {
+        state->y[i] = state->y[i - 1];
+    }
+    state->y[0] = output;
+
+    return output;
+}

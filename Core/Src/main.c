@@ -87,8 +87,8 @@ float FFT_InputBufmy[FFT_LENGTH*2];
 float FFT_OutputBufmy[FFT_LENGTH];	
 float FFT_OutputBufmy1[FFT_LENGTH];	
 arm_cfft_radix4_instance_f32 scfft;
-
-
+int numangle = 0;
+int16_t fftf[1024];
 
 
 void fftcal()
@@ -103,17 +103,20 @@ arm_cmplx_mag_f32(FFT_InputBufmy,FFT_OutputBufmy,FFT_LENGTH);
 
 for(int i = 0;i<FFT_LENGTH;i++)
 {
-	FFT_OutputBufmy[i] =FFT_OutputBufmy[i]*0.36*0.1;
+	FFT_OutputBufmy[i] =FFT_OutputBufmy[i]*0.36*0.5;
+			if(FFT_OutputBufmy[i]>500)
+	{
+	FFT_OutputBufmy[i] = 100;
+	
+	}
+fftf[i] = FFT_OutputBufmy[i];
+	
 //	if(FFT_OutputBufmy[i]<1)
 //	{
 //	FFT_OutputBufmy[i] = 0;
 //	
 //	}
-//		if(FFT_OutputBufmy[i]>500)
-//	{
-//	FFT_OutputBufmy[i] = 500;
-//	
-//	}
+
 	
 
 }
@@ -126,6 +129,7 @@ Second_Order_TF_t tf;
 		int16_t maxtt,mintt;
 		int16_t maxraw,minraw;
 		int ifboom = 0;
+		IIRFilterState filterState;
 /* USER CODE END 0 */
 
 /**
@@ -169,7 +173,7 @@ int main(void)
 	lcd_init();
 	lcd_clear(BLACK);
 	lcd_display_dir(1);
-	
+	IIRFilter_Init(&filterState);
 			arm_cfft_radix4_init_f32(&scfft,FFT_LENGTH,0,1);  
 //Second_Order_TF_Init(&tf, coefficients);			
   /* USER CODE END 2 */
@@ -197,8 +201,9 @@ int main(void)
 			//心电与心率信号采集
 			{
 				data_trans();
-				IIRFilter(ECGRawData[0]);
-				FIRFilter(ECGRawData[0]);
+				//IIRFilter(ECGRawData[0]);
+				IIR_Result = IIRFilter_Process(&filterState, ECGRawData[0]);
+				FIRFilter(IIR_Result);
 				heart_beat = heartbeat_check(FIRResult);
 				if(heart_beat ==1)
 				{
@@ -229,10 +234,20 @@ int main(void)
 					arm_max_q15(&ECG_Signal_raw[0],ECG_COUNT,&maxraw,&maxindex);
 					arm_min_q15(&ECG_Signal_raw[0],ECG_COUNT,&minraw,&maxindex);
 					maxfft = maxtt-mintt;
-					//fftcal();
+					fftcal();
+								if(numangle==1)
+				{
+				drawCurve(fftf,1024);
 				}
+				}
+				if(numangle==1)
+				{
+				//drawCurve(fftf,1024);
+				}
+					else{
 				drawCurve1(FIRResult); //画波形
-			//	drawCurve1(heart_beat*maxtt); //画波形
+					}
+					//	drawCurve1(heart_beat*maxtt); //画波形
 				lcd_show_string(10, 10, 240, 16, 16, "HR: ", WHITE);
 				lcd_show_num(32, 10, (uint32_t)heart_rate, 3, 16, WHITE);
 				
