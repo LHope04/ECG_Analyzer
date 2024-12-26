@@ -1365,51 +1365,64 @@ void drawCurve1(int16_t value)
 		}
 		else  //超出屏幕宽度，清屏，从第一个点开始绘制，实现动态更新效果
 		{
-			lcd_clear(BLACK);
-			//	lcd_fill(0, 0, LCD_WIDTH, LCD_HEIGHT - 50, BLACK); 
+			//lcd_clear(BLACK);
+				lcd_fill(0, 0, LCD_WIDTH, LCD_HEIGHT - 50, BLACK); 
 			lcd_draw_point(10, y, WHITE);
 			lastX = 10;
 			lastY = y;
 		}
   }
 }
-		void drawXAxis()
+void drawXAxis()
 {
-    uint16_t axisY = LCD_HEIGHT - 30; // Position of the X-axis (near the bottom)
+    uint16_t axisX = 10;              // X-axis start position for Y-axis
+    uint16_t axisY = LCD_HEIGHT - 100; // Y-axis position for X-axis
     uint16_t tickHeight = 5;          // Length of tick marks
+    uint16_t tickWidth = 5;           // Width of Y-axis tick marks
 
-    // Draw the horizontal line for the axis
-    lcd_draw_line(10, axisY, LCD_WIDTH - 10, axisY, WHITE);
+    // Draw the horizontal line for the X-axis
+    lcd_draw_line(axisX, axisY, LCD_WIDTH - 10, axisY, WHITE);
 
-    // Add tick marks at intervals
-    for (uint16_t i = 10; i < LCD_WIDTH - 10; i += 20)
+    // Add tick marks to the X-axis
+    for (uint16_t i = axisX; i < LCD_WIDTH - 10; i += 20)
     {
         lcd_draw_line(i, axisY - tickHeight, i, axisY + tickHeight, WHITE);
     }
+
+    // Draw the vertical line for the Y-axis
+    lcd_draw_line(axisX, 10, axisX, axisY, WHITE);
+
+    // Add tick marks to the Y-axis
+    for (uint16_t i = 10; i <= axisY; i += 20)
+    {
+        lcd_draw_line(axisX - tickWidth, i, axisX + tickWidth, i, WHITE);
+    }
 }
+
 float mul;
 int16_t max_value, min_value;
 float amp, vpp;
+int firstPoint1 =1;
 void drawCurve(int16_t* value, uint16_t num)  
 {
 	uint16_t x, y, temp;
 	mul = num/460.0f;
 	max_value = -150; min_value = 150;
 	
-	//lcd_clear(BLACK);
-	lcd_fill(320,240-50,0,240,BLACK);
+	lcd_clear(BLACK);
+	//lcd_fill(0, 0, LCD_WIDTH, LCD_HEIGHT - 50, BLACK);
 	for(uint16_t i = 0; i < num - 1; i++)
 	{
 		temp = i/mul;
 		x = 10 + temp;
 		y = LCD_HEIGHT - value[i]*(LCD_HEIGHT - 20)/300;	
 		
-		if(firstPoint)//如果是第一次画点，则无需连线，直接描点即可
+		if(firstPoint1)//如果是第一次画点，则无需连线，直接描点即可
 		{
 			lcd_draw_point(10, y, WHITE);
 			lastX = 10;
 			lastY = y;
-			firstPoint = 0;
+			firstPoint1 = 0;
 		}
 		else
 		{
@@ -1434,7 +1447,7 @@ void drawCurve(int16_t* value, uint16_t num)
 //	lcd_show_string(10, 50, 240, 16, 16, "Amp: ", WHITE);
 //	lcd_show_num(48, 50, (uint32_t)amp, 3, 16, WHITE);
 //	
-	firstPoint = 1;
+	firstPoint1 = 1;
 }
 
 

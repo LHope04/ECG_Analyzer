@@ -246,9 +246,8 @@ void EXTI2_IRQHandler(void)
 		if(numangle == 0)
 		{numangle = 1;}
 		else if(numangle == 1)
-		{{numangle = 2;}}
-				else if(numangle == 2)
-		{{numangle = 0;}}
+		{numangle = 0;}
+
 
 	
 	

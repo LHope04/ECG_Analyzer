@@ -237,31 +237,43 @@ int main(void)
 					arm_min_q15(&ECG_Signal_raw[0],ECG_COUNT,&minraw,&maxindex);
 					maxfft = maxtt-mintt;
 					fftcal();
-								if(numangle==1)
-				{
+
 				drawCurve(fftf,1024);
+				
 				}
-				}
-				if(numangle==1)
-				{
+
 				//drawCurve(fftf,1024);
-				}
-					else{
-				drawCurve1(FIRResult); //»­²¨ÐÎ
-					}
+				
+//				if(numangle == 1){
+//drawCurve1(ECGRawData[1]);
+//				}
+//						else {
+//drawCurve1(ECGRawData[0]);
+//					}	
+				drawCurve1(ECGRawData[0]); //»­²¨ÐÎ
+					
 					//	drawCurve1(heart_beat*maxtt); //»­²¨ÐÎ
 				lcd_show_string(10, 10, 240, 16, 16, "HR: ", WHITE);
 				lcd_show_num(32, 10, (uint32_t)heart_rate, 3, 16, WHITE);
-				
-					float vppt = (maxraw - minraw)/26.f*100;
-	float ampt = vppt/2;
+				float vppt;
+				float ampt;
+				if(numangle == 1){
+				 vppt = (maxraw - minraw)/30.f*100;//26
+	ampt = vppt/2;
+				}
+						else {
+					 vppt = (maxraw - minraw)/26.f*100;//26
+							 ampt = vppt/2;
+					}		
+					
+
 	
 	lcd_show_string(10, 30, 240, 16, 16, "Vpp: ", WHITE);
 	lcd_show_num(48, 30, (uint32_t)vppt, 3, 16, WHITE);
 	lcd_show_string(10, 50, 240, 16, 16, "Amp: ", WHITE);
 	lcd_show_num(48, 50, (uint32_t)ampt, 3, 16, WHITE);
 				
-				printf("A = %d,B = %d,C = %d\n", ECGRawData[0],  ECGRawData[1], FIRResult);
+			//	printf("A = %d,B = %d,C = %d\n", ECGRawData[0],  ECGRawData[1], FIRResult);
 				drawXAxis();
 			}
 			
