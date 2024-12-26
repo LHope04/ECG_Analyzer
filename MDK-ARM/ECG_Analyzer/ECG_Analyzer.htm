@@ -3,7 +3,7 @@
 <title>Static Call Graph - [ECG_Analyzer\ECG_Analyzer.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ECG_Analyzer\ECG_Analyzer.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Fri Dec 27 00:24:51 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Fri Dec 27 01:31:24 2024
 <BR><P>
 <H3>Maximum Stack Usage =        624 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -652,7 +652,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
-<P><STRONG><a name="[12]"></a>EXTI2_IRQHandler</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, stm32f4xx_it.o(.text.EXTI2_IRQHandler))
+<P><STRONG><a name="[12]"></a>EXTI2_IRQHandler</STRONG> (Thumb, 102 bytes, Stack size 8 bytes, stm32f4xx_it.o(.text.EXTI2_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = EXTI2_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler &rArr; HAL_GPIO_EXTI_Callback
 </UL>
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler
@@ -1471,7 +1471,7 @@ Global Symbols
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_ex_nt35510_reginit
 </UL>
 
-<P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 976 bytes, Stack size 104 bytes, main.o(.text.main))
+<P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 1000 bytes, Stack size 104 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 624<LI>Call Chain = main &rArr; lcd_init &rArr; lcd_ex_nt35310_reginit &rArr; delay_ms &rArr; HAL_Delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawXAxis

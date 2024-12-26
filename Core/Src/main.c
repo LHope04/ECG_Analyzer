@@ -244,13 +244,15 @@ int main(void)
 
 				//drawCurve(fftf,1024);
 				
-//				if(numangle == 1){
-//drawCurve1(ECGRawData[1]);
-//				}
-//						else {
-//drawCurve1(ECGRawData[0]);
-//					}	
-				drawCurve1(ECGRawData[0]); //»­²¨ÐÎ
+				if(numangle == 1){
+drawCurve1(ECGRawData[1]);
+				}
+						else if(numangle == 0){
+drawCurve1(FIRResult);}
+						else {
+drawCurve1(ECGRawData[0]);
+					}	
+			//	drawCurve1(ECGRawData[0]); //»­²¨ÐÎ
 					
 					//	drawCurve1(heart_beat*maxtt); //»­²¨ÐÎ
 				lcd_show_string(10, 10, 240, 16, 16, "HR: ", WHITE);
@@ -258,20 +260,20 @@ int main(void)
 				float vppt;
 				float ampt;
 				if(numangle == 1){
-				 vppt = (maxraw - minraw)/30.f*100;//26
-	ampt = vppt/2;
+				 vppt = 2000;//26
+	ampt = (float)vppt/2.f;
 				}
 						else {
-					 vppt = (maxraw - minraw)/26.f*100;//26
-							 ampt = vppt/2;
+					 vppt = (float)(maxraw - minraw)/27.f*1000;//26
+							 ampt = (float)vppt/2.f;
 					}		
 					
 
 	
 	lcd_show_string(10, 30, 240, 16, 16, "Vpp: ", WHITE);
-	lcd_show_num(48, 30, (uint32_t)vppt, 3, 16, WHITE);
+	lcd_show_num(48, 30, (uint32_t)vppt, 4, 16, WHITE);
 	lcd_show_string(10, 50, 240, 16, 16, "Amp: ", WHITE);
-	lcd_show_num(48, 50, (uint32_t)ampt, 3, 16, WHITE);
+	lcd_show_num(48, 50, (uint32_t)ampt, 4, 16, WHITE);
 				
 			//	printf("A = %d,B = %d,C = %d\n", ECGRawData[0],  ECGRawData[1], FIRResult);
 				drawXAxis();

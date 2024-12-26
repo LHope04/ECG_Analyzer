@@ -1340,7 +1340,7 @@ void drawCurve1(int16_t value)
     int16_t value_min = mintt; // ???? value ????
     int16_t value_max = maxtt;  // ???? value ????
     int16_t y_min = -40;      // ???????
-    int16_t y_max = 40;       // ???????
+    int16_t y_max = 80;       // ???????
 
 
     int16_t mapped_value = y_min + (value - value_min) * (y_max - y_min) / (value_max - value_min);
