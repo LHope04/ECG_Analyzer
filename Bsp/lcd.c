@@ -1326,8 +1326,8 @@ void lcd_show_string(uint16_t x, uint16_t y, uint16_t width, uint16_t height, ui
     }
 }
 
-#define LCD_WIDTH 480
-#define LCD_HEIGHT 320
+#define LCD_WIDTH 320
+#define LCD_HEIGHT 240
 
 uint16_t lastX,lastY;
 uint8_t firstPoint = 1;
@@ -1345,7 +1345,7 @@ void drawCurve1(int16_t value)
 
     int16_t mapped_value = y_min + (value - value_min) * (y_max - y_min) / (value_max - value_min);
 
-	y = (LCD_HEIGHT - 10) - mapped_value*(LCD_HEIGHT - 20)/500 - 200;	
+	y = (LCD_HEIGHT - 10) - mapped_value*(LCD_HEIGHT - 20)/500 - 120;	
 
 	if(firstPoint)//如果是第一次画点，则无需连线，直接描点即可
 	{
@@ -1366,13 +1366,27 @@ void drawCurve1(int16_t value)
 		else  //超出屏幕宽度，清屏，从第一个点开始绘制，实现动态更新效果
 		{
 			lcd_clear(BLACK);
+			//	lcd_fill(0, 0, LCD_WIDTH, LCD_HEIGHT - 50, BLACK); 
 			lcd_draw_point(10, y, WHITE);
 			lastX = 10;
 			lastY = y;
 		}
   }
 }
+		void drawXAxis()
+{
+    uint16_t axisY = LCD_HEIGHT - 30; // Position of the X-axis (near the bottom)
+    uint16_t tickHeight = 5;          // Length of tick marks
 
+    // Draw the horizontal line for the axis
+    lcd_draw_line(10, axisY, LCD_WIDTH - 10, axisY, WHITE);
+
+    // Add tick marks at intervals
+    for (uint16_t i = 10; i < LCD_WIDTH - 10; i += 20)
+    {
+        lcd_draw_line(i, axisY - tickHeight, i, axisY + tickHeight, WHITE);
+    }
+}
 float mul;
 int16_t max_value, min_value;
 float amp, vpp;
@@ -1382,12 +1396,13 @@ void drawCurve(int16_t* value, uint16_t num)
 	mul = num/460.0f;
 	max_value = -150; min_value = 150;
 	
-	lcd_clear(BLACK);
+	//lcd_clear(BLACK);
+	lcd_fill(320,240-50,0,240,BLACK);
 	for(uint16_t i = 0; i < num - 1; i++)
 	{
 		temp = i/mul;
 		x = 10 + temp;
-		y = LCD_HEIGHT/2 - value[i]*(LCD_HEIGHT - 20)/300;	
+		y = LCD_HEIGHT - value[i]*(LCD_HEIGHT - 20)/300;	
 		
 		if(firstPoint)//如果是第一次画点，则无需连线，直接描点即可
 		{
@@ -1411,14 +1426,14 @@ void drawCurve(int16_t* value, uint16_t num)
 		//HAL_Delay(5);
 	}
 	
-	vpp = (max_value - min_value)/32768.0f*2400;
-	amp = vpp/2;
-	
-	lcd_show_string(10, 30, 240, 16, 16, "Vpp: ", WHITE);
-	lcd_show_num(48, 30, (uint32_t)vpp, 3, 16, WHITE);
-	lcd_show_string(10, 50, 240, 16, 16, "Amp: ", WHITE);
-	lcd_show_num(48, 50, (uint32_t)amp, 3, 16, WHITE);
-	
+//	vpp = (max_value - min_value)/32768.0f*2400;
+//	amp = vpp/2;
+//	
+//	lcd_show_string(10, 30, 240, 16, 16, "Vpp: ", WHITE);
+//	lcd_show_num(48, 30, (uint32_t)vpp, 3, 16, WHITE);
+//	lcd_show_string(10, 50, 240, 16, 16, "Amp: ", WHITE);
+//	lcd_show_num(48, 50, (uint32_t)amp, 3, 16, WHITE);
+//	
 	firstPoint = 1;
 }
 

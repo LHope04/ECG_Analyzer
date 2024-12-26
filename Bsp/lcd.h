@@ -234,6 +234,7 @@ void lcd_show_string(uint16_t x, uint16_t y, uint16_t width, uint16_t height, ui
 
 void drawCurve(int16_t* value, uint16_t num);
 void drawCurve1(int16_t value);
+		void drawXAxis();
 void delay_us(uint32_t nus);
 void delay_ms(uint16_t nms);
 

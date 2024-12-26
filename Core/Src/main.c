@@ -130,6 +130,8 @@ Second_Order_TF_t tf;
 		int16_t maxraw,minraw;
 		int ifboom = 0;
 		IIRFilterState filterState;
+		
+
 /* USER CODE END 0 */
 
 /**
@@ -208,8 +210,8 @@ int main(void)
 				if(heart_beat ==1)
 				{
 					ifboom++;
-					if(ifboom == 3){
-					heart_rate = 3*60/DWT_GetDeltaT(&DWT_CNT1);
+					if(ifboom == 6){
+					heart_rate = 6*60/DWT_GetDeltaT(&DWT_CNT1);
 					ifboom= 0;
 					
 					}
@@ -260,7 +262,7 @@ int main(void)
 	lcd_show_num(48, 50, (uint32_t)ampt, 3, 16, WHITE);
 				
 				printf("A = %d,B = %d,C = %d\n", ECGRawData[0],  ECGRawData[1], FIRResult);
-				
+				drawXAxis();
 			}
 			
 			//内部方波采集

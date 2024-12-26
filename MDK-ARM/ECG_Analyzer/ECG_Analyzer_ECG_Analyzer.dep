@@ -1,7 +1,7 @@
 Dependencies for Project 'ECG_Analyzer', Target 'ECG_Analyzer': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
 F (startup_stm32f407xx.s)(0x676C2D10)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4 -Wa,armasm,--pd,"__MICROLIB SETA 1"-I./RTE/_ECG_Analyzer-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/PrivateInclude-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 538" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"STM32F407xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ecg_analyzer/startup_stm32f407xx.o)
-F (../Core/Src/main.c)(0x676C41E3)(-xc -std=gnu11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Bsp-I./RTE/_ECG_Analyzer-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/PrivateInclude-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -DARM_MATH_CM4-o ecg_analyzer/main.o -MD)
+F (../Core/Src/main.c)(0x676D789D)(-xc -std=gnu11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Bsp-I./RTE/_ECG_Analyzer-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/PrivateInclude-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -DARM_MATH_CM4-o ecg_analyzer/main.o -MD)
 I (..\Core\Inc\main.h)(0x676A6EB6)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6742E513)
 I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x676913DC)
@@ -39,7 +39,7 @@ I (..\Core\Inc\usart.h)(0x67440008)
 I (..\Core\Inc\gpio.h)(0x6741F11D)
 I (..\Core\Inc\fsmc.h)(0x6747D12B)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x63884908)
-I (..\Bsp\lcd.h)(0x676BE01E)
+I (..\Bsp\lcd.h)(0x676D789D)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (C:\Users\DELL\AppData\Local\Arm\Packs\ARM\CMSIS-DSP\1.14.2\Include\arm_math.h)(0x6364655A)
 I (C:\Users\DELL\AppData\Local\Arm\Packs\ARM\CMSIS-DSP\1.14.2\Include\arm_math_types.h)(0x6364655A)
@@ -242,7 +242,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6742E513)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x6742E513)
 I (..\Core\Inc\stm32f4xx_it.h)(0x676C29EA)
 I (..\Bsp\led.h)(0x6741FB4D)
-I (..\Bsp\lcd.h)(0x676BE01E)
+I (..\Bsp\lcd.h)(0x676D789D)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\Core\Inc\usart.h)(0x67440008)
 I (C:\Users\DELL\AppData\Local\Arm\Packs\ARM\CMSIS-DSP\1.14.2\Include\arm_math.h)(0x6364655A)
@@ -1011,7 +1011,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x6742E513)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6742E513)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6742E513)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x6742E513)
-F (..\Bsp\lcd.c)(0x676C1E81)(-xc -std=gnu11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Bsp-I./RTE/_ECG_Analyzer-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/PrivateInclude-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -DARM_MATH_CM4-o ecg_analyzer/lcd.o -MD)
+F (..\Bsp\lcd.c)(0x676D7C98)(-xc -std=gnu11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Bsp-I./RTE/_ECG_Analyzer-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/PrivateInclude-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -DARM_MATH_CM4-o ecg_analyzer/lcd.o -MD)
 I (..\Core\Inc\main.h)(0x676A6EB6)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x6742E513)
 I (..\Core\Inc\stm32f4xx_hal_conf.h)(0x676913DC)
@@ -1045,7 +1045,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x6742E513)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x6742E513)
 I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x6742E513)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
-I (..\Bsp\lcd.h)(0x676BE01E)
+I (..\Bsp\lcd.h)(0x676D789D)
 I (..\Bsp\lcdfont.h)(0x64ACF40E)
 I (..\Bsp\lcd_ex.c)(0x6768BFDE)
 F (..\Bsp\ADS1292.c)(0x676C1979)(-xc -std=gnu11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Bsp-I./RTE/_ECG_Analyzer-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/PrivateInclude-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -DARM_MATH_CM4-o ecg_analyzer/ads1292.o -MD)
@@ -1085,7 +1085,7 @@ I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h)(0x6742E513)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x63884908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x63884908)
 I (..\Core\Inc\spi.h)(0x6768BA25)
-I (..\Bsp\lcd.h)(0x676BE01E)
+I (..\Bsp\lcd.h)(0x676D789D)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdlib.h)(0x63884908)
 I (..\Core\Inc\usart.h)(0x67440008)
 F (..\Bsp\IIRFilter.c)(0x676C3D31)(-xc -std=gnu11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Bsp-I./RTE/_ECG_Analyzer-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS-DSP/1.14.2/PrivateInclude-IC:/Users/DELL/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/DELL/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include-D__UVISION_VERSION="538" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -DARM_MATH_CM4-o ecg_analyzer/iirfilter.o -MD)
